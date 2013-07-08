@@ -31,6 +31,7 @@ class RedirectAdmin(GenericAdminModelAdmin):
 
     def final_destination(self, instance):
         """Show the redirect's final destination URL."""
+        html = None
         if instance.content_object:
             html = instance.content_object.get_absolute_url()
         elif instance.to_url:

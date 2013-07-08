@@ -22,10 +22,12 @@ class Redirect(models.Model):
         unique_together = ('site', 'from_url')
 
     def __unicode__(self):
-        if self.object_id:
-            return  '{0} ---> {1}'.format(self.from_url, self.content_object.get_absolute_url())
+        uni = 'None'
+        if self.object_id and self.content_object:
+            uni = u'{0} ---> {1}'.format(self.from_url, self.content_object.get_absolute_url())
         else:
-            return '{0} ---> {1}'.format(self.from_url, self.to_url)
+            uni = u'{0} ---> {1}'.format(self.from_url, self.to_url)
+        return uni
 
     def clean(self):
         """Framework hook for validating an entire model."""

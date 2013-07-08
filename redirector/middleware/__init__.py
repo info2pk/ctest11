@@ -1,7 +1,7 @@
 import urlparse
 
 from django.conf import settings
-from django.http import HttpResponseGone, HttpResponsePermanentRedirect, HttpResponseNotFound
+from django.http import HttpResponseGone, HttpResponsePermanentRedirect
 
 from ..models import Redirect
 
@@ -41,7 +41,7 @@ class RedirectMiddleware(object):
                 if r.content_object:
                     url = r.content_object.get_absolute_url()
                 else:
-                    url = HttpResponseNotFound()
+                    url = HttpResponseGone()
             else:
                 url = r.to_url
 

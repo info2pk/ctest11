@@ -41,7 +41,7 @@ class RedirectMiddleware(object):
                 if r.content_object:
                     url = r.content_object.get_absolute_url()
                 else:
-                    url = HttpResponseGone()
+                    return HttpResponseGone()
             else:
                 url = r.to_url
 

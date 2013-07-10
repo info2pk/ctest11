@@ -80,9 +80,6 @@ class RedirectTest(TestCase):
         response = self.middleware.process_response(MockRequest('/usertest/'),
                                                     MockResponse(410))
         self.assertEqual(response.status_code, 410)
-        # Make sure that the changelist is correctly displayed
-        response = self.client.get('/admin/redirector/redirect/')
-        self.assertEqual(response.status_code, 200)
 
     def test_url_redirect_unicode(self):
         self.assertEqual(self.basic_redirect.__unicode__(), u'/a ---> /b/')

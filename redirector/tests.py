@@ -82,11 +82,11 @@ class RedirectTest(TestCase):
         self.assertEqual(response.status_code, 410)
 
     def test_url_redirect_unicode(self):
-        self.assertEqual(self.basic_redirect.__unicode__(), u'/a ---> /b/')
+        self.assertEqual(unicode(self.basic_redirect), u'/a ---> /b/')
 
     def test_object_redirect_unicode(self):
-        self.assertEqual(self.user_redirect.__unicode__(), u'/usertest/ ---> /users/mockuser/')
+        self.assertEqual(unicode(self.user_redirect), u'/usertest/ ---> /users/mockuser/')
 
     def test_object_deleted_redirect_unicode(self):
         self.mock_user.delete()
-        self.assertEqual(self.user_redirect.__unicode__(), u'/usertest/ ---> None')
+        self.assertEqual(unicode(self.user_redirect), u'/usertest/ ---> None')

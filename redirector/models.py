@@ -23,9 +23,12 @@ class Redirect(models.Model):
 
     def __unicode__(self):
         if self.object_id:
-            return  '{0} ---> {1}'.format(self.from_url, self.content_object.get_absolute_url())
+            if self.content_object:
+                return u'{0} ---> {1}'.format(self.from_url, self.content_object.get_absolute_url())
+            else:
+                return u'{0} ---> {1}'.format(self.from_url, None)
         else:
-            return '{0} ---> {1}'.format(self.from_url, self.to_url)
+            return u'{0} ---> {1}'.format(self.from_url, self.to_url)
 
     def clean(self):
         """Framework hook for validating an entire model."""

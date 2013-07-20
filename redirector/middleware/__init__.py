@@ -38,7 +38,10 @@ class RedirectMiddleware(object):
 
             if not r.to_url:
                 # It's a redirect to a content object.
-                url = r.content_object.get_absolute_url()
+                if r.content_object:
+                    url = r.content_object.get_absolute_url()
+                else:
+                    return HttpResponseGone()
             else:
                 url = r.to_url
 

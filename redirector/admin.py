@@ -24,10 +24,14 @@ class RedirectAdmin(GenericAdminModelAdmin):
         ),
     )
 
-    list_display = ('from_url', 'final_destination', 'site', 'content_object', 'to_url')
+    list_display = ('from_url', 'final_destination', 'site', 'get_content_object', 'to_url')
     list_filter = ('site', 'content_type')
     search_fields = ('from_url', 'to_url', 'object_id')
     ordering = ('from_url',)
+
+    def get_content_object(self, instance):
+        return unicode(instance.content_object)
+    get_content_object.short_description = u'Content object'
 
     def final_destination(self, instance):
         """Show the redirect's final destination URL."""

@@ -34,13 +34,13 @@ class RedirectMiddleware(object):
 
         if r is not None:
             if not any([hasattr(r.content_object, 'get_absolute_url'), r.to_url]):
-                return HttpResponseGone()
+                return Http404()
 
             if not r.to_url:
                 # It's a redirect to a content object.
                 url = r.get_content_object_url()
                 if not url:
-                    raise Http404
+                    return Http404()
             else:
                 url = r.to_url
 
